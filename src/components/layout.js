@@ -7,7 +7,8 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-
+import AOS from 'aos'
+import PropTypes from "prop-types"
 import Header from "./header"
 import "./layout.css"
 
@@ -22,9 +23,15 @@ const Layout = ({ children }) => {
     }
   `)
 
+  React.useEffect(() => {
+    AOS.init({
+      duration: 500,
+    })
+  }, [])
+
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{
           margin: `0 auto`,
@@ -47,5 +54,10 @@ const Layout = ({ children }) => {
     </>
   )
 }
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
 
 export default Layout
