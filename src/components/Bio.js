@@ -9,9 +9,9 @@ const Bio = () => {
       <div style={{ padding: '1%', display: 'flex', flexDirection: 'row', alignItems: 'center', textAlign: 'center', justifyContent: 'center', maxWidth: '100%', marginTop: '0%' }}>
         <div style={{ fontSize: '1.0rem', paddingLeft: '10%' }}>
         <img src={profileImage} alt="Profile" style={{ width: '250px', height: '250px', borderRadius: '50%' }} />
-          <h5 style={{fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <h4 style={{fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             Data Scientist <span style={{ marginLeft: '10px' }}>🔍</span> | Machine Learning Enthusiast <span style={{ marginLeft: '5px' }}>🤖</span> | Problem Solver <span style={{ marginLeft: '5px' }}>💡</span>
-          </h5>
+          </h4>
         </div>
         <div style={{ fontSize: '1.0rem', paddingLeft: '10%' }}>
           <p style={{ fontStyle: 'italic', fontSize: '1.25rem', margin: '1rem 0' }}>

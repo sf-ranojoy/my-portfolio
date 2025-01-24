@@ -1,72 +1,55 @@
-// Horizontal Timeline Component
+// Horizontal Timeline Component using gatsby-plugin-material-ui
 import React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 const experiences = [
   {
-    title: 'Consultant, School Frontiers',
+    title: 'Chief Data Architect',
+    employer: 'School Frontiers',
     date: 'Aug 2024 - Present',
-    description: 'Onboarding team members on GitHub, Apache Airflow, and Azure. Developed an in-house database.'
+    logo: '/logos/school-frontiers.png'
   },
   {
-    title: 'Graduate Research Assistant, Penn State',
+    title: 'Graduate Research Assitant',
+    employer: 'The Pennsylvania State Univeristy',
     date: 'Jan 2023 - May 2024',
-    description: 'Mentored startups, improved UI features, and increased user satisfaction by 25%.'
+    logo: '/logos/penn-state.png'
   },
   {
-    title: 'Data Science Intern, Essentials Utilities',
+    title: 'Data Science Intern',
+    employer: 'Essentials Utilities',
     date: 'May 2023 - Aug 2023',
-    description: 'Optimized wastewater processes and streamlined customer acquisition.'
+    logo: '/logos/essentials-utilities.png'
   },
   {
-    title: 'Decision Science Team Lead, Mu-Sigma',
+    title: 'Decision Science Team Lead',
+    employer: 'Mu-Sigma',
     date: 'Jun 2018 - Jul 2022',
-    description: 'Led a team to develop an NLP chatbot, secured $7M in RFPs, and received awards for high-quality MVPs.'
+    logo: '/logos/mu-sigma.png'
   }
 ];
 
 const HorizontalTimeline = () => {
   return (
-    <section className="horizontal-timeline" style={{ padding: '2rem 0', position: 'relative', overflowX: 'auto', whiteSpace: 'nowrap' }}>
+    <section className="horizontal-timeline" style={{ padding: '2rem 0' }}>
       <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Professional Experience</h2>
-      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', margin: '0 auto', maxWidth: '100%' }}>
-        <div style={{ position: 'absolute', top: '50%', width: '100%', height: '2px', backgroundColor: '#48C9B0', zIndex: '-1' }} />
+      <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'nowrap', overflowX: 'auto', padding: '0 1rem' }}>
         {experiences.map((exp, index) => (
-          <div
-            key={index}
-            style={{
-              position: 'relative',
-              flex: '0 0 auto',
-              margin: '0 2rem',
-              textAlign: 'center',
-              maxWidth: '250px',
-            }}
-          >
-            <div
-              style={{
-                position: 'relative',
-                border: '1px solid #48C9B0',
-                borderRadius: '8px',
-                padding: '1rem',
-                backgroundColor: '#F4F6F6',
-              }}
-            >
-              <h3 style={{ color: '#48C9B0', fontSize: '1.1rem' }}>{exp.title}</h3>
-              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', color: '#2C3E50' }}>{exp.date}</p>
-              <p style={{ fontSize: '0.85rem', color: '#34495E' }}>{exp.description}</p>
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '16px',
-                height: '16px',
-                backgroundColor: '#48C9B0',
-                borderRadius: '50%',
-              }}
-            />
-          </div>
+          <Card key={index} style={{ minWidth: '300px', maxWidth: '300px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
+            <CardContent>
+              <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                <img src={exp.logo} alt={`${exp.title} logo`} style={{ maxWidth: '120px', maxHeight: '120px', objectFit: 'contain' }} />
+              </div>
+              <Typography variant="h6" component="div" style={{ color: '#48C9B0', fontWeight: 'bold', textAlign: 'center' }}>
+                {exp.title}
+              </Typography>
+              <Typography variant="subtitle1" style={{ textAlign: 'center', fontStyle: 'italic', color: '#2C3E50' }}>
+                {exp.date}
+              </Typography>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>
