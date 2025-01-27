@@ -39,7 +39,7 @@ const HorizontalTimeline = () => {
         {experiences.map((exp, index) => (
           <Card key={index} style={{ minWidth: '300px', maxWidth: '300px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
             <CardContent>
-              <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '150px', marginBottom: '1rem' }}>
                 <img src={exp.logo} alt={`${exp.title} logo`} style={{ maxWidth: '120px', maxHeight: '120px', objectFit: 'contain' }} />
               </div>
               <Typography variant="h6" component="div" style={{ color: '#48C9B0', fontWeight: 'bold', textAlign: 'center' }}>
