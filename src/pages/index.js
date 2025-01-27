@@ -10,7 +10,6 @@ export default function Home() {
       <Header />
       <div>
         <Bio />
-        {/* <Carousel /> */}
         <HorizontalTimeline/>
       </div>
     </main>

@@ -9,6 +9,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.1",
     "aos": "^2.3.4",
+    "axios": "^1.7.9",
     "gatsby": "^5.14.1",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",
@@ -45,5 +46,4 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "deploy": "gatsby build && gh-pages -d public -b main"
-
 }
