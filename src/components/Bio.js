@@ -5,7 +5,7 @@ import profileImage from '../images/DSC_0676.jpg'; // Adjust the path if necessa
 
 const Bio = () => {
   return (
-    <section className="hero-section" style={{ textAlign: 'center', padding: '4rem 2rem' }}>
+    <section className="hero-section" style={{ textAlign: 'center', padding: '1rem 1rem' }}>
       <div style={{ padding: '1%', display: 'flex', flexDirection: 'row', alignItems: 'center', textAlign: 'center', justifyContent: 'center', maxWidth: '100%', marginTop: '0%' }}>
         <div style={{ fontSize: '1.0rem', paddingLeft: '10%' }}>
         <img src={profileImage} alt="Profile" style={{ width: '250px', height: '250px', borderRadius: '50%' }} />
