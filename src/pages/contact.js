@@ -4,7 +4,6 @@ import ContactForm from "../components/ContactForm"
 const ContactPage = () => {
   return (
     <Layout>
-      <h1>Contact</h1>
       <ContactForm/>
     </Layout>
   );
