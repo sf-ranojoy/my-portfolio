@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import ProjectCard from './ProjectCard';
+// import ProjectCard from './ProjectCard';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -40,11 +40,11 @@ const Carousel = () => {
   return (
     <div style={{ margin: '1%',  backgroundColor: '#f0f0f0', padding: '20px', justifyContent:'center'}}>
       <Slider {...settings}>
-        {projects.map((project, index) => (
+        {/* {projects.map((project, index) => (
           <div key={index}  style={{ display: 'flex', justifyContent: 'center' }}>
             <ProjectCard project={project} />
           </div>
-        ))}
+        ))} */}
       </Slider>
     </div>
   );

@@ -11,6 +11,7 @@ const generatePlaceholderImage = (title) => {
 };
 
 const DataCard = ({ title, description, link, image }) => {
+  console.log("image ===>>", image)
   return (
     <Card style={{ width: '300px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
       <img
