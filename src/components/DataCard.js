@@ -1,21 +1,25 @@
 // Reusable Card Component for Projects and Blog Posts
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-const generatePlaceholderImage = (title) => {
-  const baseUrl = 'https://via.placeholder.com/300x150/48C9B0/ffffff?text=';
-  return `${baseUrl}${encodeURIComponent(title)}`;
-};
+// const generatePlaceholderImage = (title) => {
+//   const baseUrl = 'https://via.placeholder.com/300x150/48C9B0/ffffff?text=';
+//   return `${baseUrl}${encodeURIComponent(title)}`;
+// };
 
 const DataCard = ({ title, description, link, image }) => {
-  console.log("image ===>>", image)
+  
+  useEffect(() => {
+    console.log('CustomCard Props:', { title, description, link, image });
+  }, [title, description, link, image]);
+
   return (
     <Card style={{ width: '300px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
       <img
-        src={image || generatePlaceholderImage(title)}
+        src={image}
         alt={title}
         style={{ width: '100%', height: '150px', objectFit: 'cover' }}
       />

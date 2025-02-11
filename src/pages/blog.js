@@ -4,13 +4,19 @@ import axios from 'axios';
 import DataCard from '../components/DataCard';
 
 const extractImageFromHTML = (html) => {
-  const doc = new DOMParser().parseFromString(html, 'text/html');
+  if (!html) return '';
+  // console.log('Raw HTML:', html);
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
   const imgTag = doc.querySelector('img');
+  console.log('Extracted Image Tag:', imgTag);
   return imgTag ? imgTag.src : '';
 };
 
 const extractTextFromHTML = (html) => {
-  const doc = new DOMParser().parseFromString(html, 'text/html');
+  if (!html) return '';
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
   return doc.body.textContent.trim().slice(0, 150) + '...';
 };
 
@@ -34,7 +40,7 @@ const BlogPage = () => {
             title: post.title,
             description: extractTextFromHTML(post.description),
             link: post.link,
-            image: post.thumbnail || extractImageFromHTML(post.description),
+            image: extractImageFromHTML(post.description),
           })));
         }
       } catch (error) {
@@ -55,7 +61,7 @@ const BlogPage = () => {
             key={project.id}
             title={project.title}
             description={project.description}
-            link={project.html_url}
+            link={project.link}
           />
         ))}
         </div>
