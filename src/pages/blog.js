@@ -62,6 +62,7 @@ const BlogPage = () => {
             title={project.title}
             description={project.description}
             link={project.link}
+            image={project.image}
           />
         ))}
         </div>

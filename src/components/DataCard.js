@@ -5,10 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-// const generatePlaceholderImage = (title) => {
-//   const baseUrl = 'https://via.placeholder.com/300x150/48C9B0/ffffff?text=';
-//   return `${baseUrl}${encodeURIComponent(title)}`;
-// };
+const generatePlaceholderImage = (title) => {
+  const baseUrl = 'https://via.placeholder.com/300x150/48C9B0/ffffff?text=';
+  return `${baseUrl}${encodeURIComponent(title)}&size=320x200`;
+};
+
 
 const DataCard = ({ title, description, link, image }) => {
   
@@ -17,28 +18,31 @@ const DataCard = ({ title, description, link, image }) => {
   }, [title, description, link, image]);
 
   return (
-    <Card style={{ width: '300px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
+    <Card style={{ width: '350px', height: '500px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', margin: '10px auto', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <img
-        src={image}
+        src={image || generatePlaceholderImage(title)}
+        onError={(e) => { e.target.onerror = null; e.target.src = generatePlaceholderImage(title); }}
         alt={title}
-        style={{ width: '100%', height: '150px', objectFit: 'cover' }}
+        style={{ width: '100%', height: '200px', objectFit: 'cover' }}
       />
-      <CardContent>
-        <Typography variant="h6" component="div" style={{ color: '#48C9B0', fontWeight: 'bold', marginBottom: '1rem' }}>
+      <CardContent style={{ flexGrow: 1 }}>
+        <Typography variant="h6" component="div" style={{ color: '#48C9B0', fontWeight: 'bold', marginBottom: '1rem', textAlign: 'center' }}>
           {title}
         </Typography>
-        <Typography variant="body2" style={{ color: '#34495E', marginBottom: '1rem' }}>
+        <Typography variant="body2" style={{ color: '#34495E', marginBottom: '1rem', textAlign: 'center', minHeight: '60px' }}>
           {description || 'No description provided.'}
         </Typography>
-        <Button
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          variant="contained"
-          style={{ backgroundColor: '#48C9B0', color: '#fff' }}
-        >
-          View More
-        </Button>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="contained"
+            style={{ backgroundColor: '#48C9B0', color: '#fff' }}
+          >
+            View More
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
