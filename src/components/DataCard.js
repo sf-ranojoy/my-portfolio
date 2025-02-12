@@ -6,16 +6,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 const generatePlaceholderImage = (title) => {
-  const baseUrl = 'https://via.placeholder.com/300x150/48C9B0/ffffff?text=';
-  return `${baseUrl}${encodeURIComponent(title)}&size=320x200`;
+  return `https://api.oneapipro.com/images/placeholder?text=${title}&width=318&height=200&color=524d66d`
 };
 
 
 const DataCard = ({ title, description, link, image }) => {
-  
-  useEffect(() => {
-    console.log('CustomCard Props:', { title, description, link, image });
-  }, [title, description, link, image]);
 
   return (
     <Card style={{ width: '350px', height: '500px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', margin: '10px auto', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

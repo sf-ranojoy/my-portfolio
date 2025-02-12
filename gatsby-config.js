@@ -4,12 +4,16 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+
+
 
 module.exports = {
   siteMetadata: {
@@ -28,5 +32,11 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["GATSBY_UNSPLASH_ACCESS_KEY"], // Ensure Gatsby allows this variable
+      },
+    }, // <- Closing bracket added here
   ],
 };

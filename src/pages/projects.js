@@ -7,18 +7,18 @@ import 'react-multi-carousel/lib/styles.css';
 
 
 // Load environment variables
-const UNSPLASH_ACCESS_KEY = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
+const UNSPLASH_ACCESS_KEY = process.env.GATSBY_UNSPLASH_ACCESS_KEY;
 
 const generatePlaceholderImage = async (title) => {
   try {
+    console.log("CHECK")
     const response = await axios.get(`https://api.unsplash.com/photos/random`, {
-      params: { query: title, orientation: 'landscape' },
-      headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` },
+      params: { query: title, orientation: 'landscape', client_id: UNSPLASH_ACCESS_KEY },
     });
     return response.data.urls.regular;
   } catch (error) {
     console.error('Error fetching Unsplash image:', error);
-    return 'https://api.oneapipro.com/images/placeholder?text={Hello%2C%20World!&}width=318&height=200&color=524d66d';
+    return `https://api.oneapipro.com/images/placeholder?text=${title}&width=318&height=200&color=524d66d`;
   }
 };
 

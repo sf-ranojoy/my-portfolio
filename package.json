@@ -11,6 +11,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.9",
     "gatsby": "^5.14.1",
+    "gatsby-plugin-env-variables": "^2.3.0",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",
     "gatsby-plugin-sharp": "^5.14.0",
