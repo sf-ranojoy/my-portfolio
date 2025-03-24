@@ -3,6 +3,7 @@ import Layout from "../components/layout"; // Assuming you have a Layout compone
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import StackIcon from "tech-stack-icons"; // You can also use any another import name
+import { graphql, useStaticQuery } from "gatsby";
 
 
 const ProfilePage = () => {
@@ -32,10 +33,27 @@ const ProfilePage = () => {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
 
+  const data = useStaticQuery(graphql`
+    query {
+      contentfulGatsbyPortfolio {
+        imageLibrary {
+          id
+          title
+          description
+          file {
+            url
+          }
+        }
+      }
+    }
+  `);
+
+  const images = data.contentfulGatsbyPortfolio.imageLibrary;
+
 
   return (
     <Layout>
-      <section style={{ padding: '0.5rem', maxWidth: '1200px', margin: '0 auto', textAlign: 'justify' }}>
+      <section style={{ padding: '0.5rem', maxWidth: '1600px', margin: '0 auto', textAlign: 'justify' }}>
         <h2 style={{ fontSize: '2rem', color: '#34495E' }}>About Me</h2>
         <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
           I am an experienced Data Scientist and Software Engineer with expertise in machine learning, cloud platforms, and full-stack development.
@@ -75,10 +93,19 @@ const ProfilePage = () => {
           unwind and challenge myself.
         </p>
         <Carousel responsive={responsive} infinite autoPlay>
-          {hobbies.map((hobby, index) => (
-            <div key={index} style={{ padding: '10px' }}>
-              <img src={`/images/${hobby.image}`} alt={hobby.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              <p>{hobby.title}</p>
+          {images.map((img, index) => (
+            // <div key={img.id} style={{ width: "300px", textAlign: "center" }}>
+            //   <img
+            //     src={img.file.url}
+            //     alt={img.title}
+            //     style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "8px" }}
+            //   />
+            //   <h3 style={{ fontSize: "1.2rem", marginTop: "10px" }}>{img.title}</h3>
+            //   <p style={{ fontSize: "0.9rem", color: "#666" }}>{img.description}</p>
+            // </div>
+            <div key={index} style={{ textAlign: 'center', padding: '10px' }}>
+              <img src={img.file.url} alt={img.title} style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
+              <p>{img.title}</p>
             </div>
           ))}
         </Carousel>

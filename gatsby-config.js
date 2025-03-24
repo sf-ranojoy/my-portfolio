@@ -4,15 +4,14 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
-
 
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV || "development"}`,
+});
 
 
 module.exports = {
@@ -33,10 +32,15 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-env-variables`,
+      resolve: `gatsby-source-contentful`,
       options: {
         allowList: ["GATSBY_UNSPLASH_ACCESS_KEY"], // Ensure Gatsby allows this variable
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     }, // <- Closing bracket added here
   ],
 };
+
+console.log("Loaded Contentful Space ID:", process.env.CONTENTFUL_SPACE_ID);
+console.log("Loaded Contentful Token:", process.env.CONTENTFUL_ACCESS_TOKEN);
