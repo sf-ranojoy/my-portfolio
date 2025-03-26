@@ -27,12 +27,15 @@ const generatePlaceholderImage = async (title) => {
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchGitHubProjects = async () => {
       try {
         const githubUsername = 'ballack96'; // Replace with your GitHub username
         const response = await axios.get(`https://api.github.com/users/${githubUsername}/repos?sort=updated`);
+
         if (response.data) {
           const formattedProjects = await Promise.all(
             response.data.map(async (project) => {
@@ -47,9 +50,12 @@ const ProjectsPage = () => {
             })
           );
           setProjects(formattedProjects);
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching GitHub projects:', error);
+        setError('Failed to load GitHub projects. Please try again later.');
+        setLoading(false);
       }
     };
     fetchGitHubProjects();
@@ -67,26 +73,34 @@ const ProjectsPage = () => {
   return (
     <Layout>
       <section style={{ padding: '1rem', textAlign: 'center' }}>
-      <h2 style={{ marginBottom: '2rem', fontSize: '2rem', color: '#34495E' }}>My Projects</h2>
-      <Carousel
-        responsive={responsive}
-        infinite
-        autoPlay
-        centerMode
-        itemClass="carousel-item-padding-40-px"
-        containerClass="carousel-container"
-      >
-        {projects.map((project) => (
-          <div key={project.id} style={{ display: 'flex', justifyContent: 'center', padding: '5px' }}>
-            <DataCard
-              title={project.name}
-              description={project.description}
-              link={project.html_url}
-              image={project.image}
-            />
-          </div>
-        ))}
-      </Carousel>
+      <h2 style={{ marginBottom: '2rem', fontSize: '2rem', color: '#34495E' }}>🛠️ My Projects</h2>
+      {loading ? (
+          <h3 style={{ textAlign: 'center' }}>🔄 Loading projects...</h3>
+        ) : error ? (
+          <h3 style={{ textAlign: 'center', color: 'red' }}>{error}</h3>
+        ) : (
+          <Carousel
+            responsive={responsive}
+            infinite
+            autoPlay
+            centerMode
+            itemClass="carousel-item-padding-40-px"
+            containerClass="carousel-container"
+          >
+            {projects
+              .filter((project) => project.description && project.description.trim() !== '')
+              .map((project) => (
+                <div key={project.id} style={{ display: 'flex', justifyContent: 'center', padding: '5px' }}>
+                  <DataCard
+                    title={project.name}
+                    description={project.description}
+                    link={project.html_url}
+                    image={project.image}
+                  />
+                </div>
+              ))}
+          </Carousel>
+      )}
       </section>
     </Layout>
   );

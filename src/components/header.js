@@ -7,7 +7,7 @@ const Header = ({ siteTitle = "Ranojoy Deb" }) => {
     <header style={{ background: '#5F6A6A', padding: '0.5%' }}>
       <div style={{ margin: 'auto', maxWidth:'90%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ margin: 0, display: 'flex', alignItems: 'center', fontSize: '1.5em', alignItems:'center', whiteSpace:'nowrap' }}>
-        <img src={profileIcon}   style={{ width: '32px', height: '32px', marginRight: '5%', marginTop:'auto', marginBottom:'auto' }} />
+        <img src={profileIcon}   style={{ maxWidth: '32px', maxHeight: '32px', marginRight: '5%', marginTop:'auto', marginBottom:'auto' }} />
           <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
             {siteTitle}
           </Link>
