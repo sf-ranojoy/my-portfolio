@@ -1,48 +1,26 @@
-# Sample workflow for building and deploying a Gatsby site to GitHub Pages
-#
-# To get started with Gatsby see: https://www.gatsbyjs.com/docs/quick-start/
-#
-name: Deploy Gatsby site to Pages
+name: Build & Deploy Gatsby to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: [main]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-# Default to bash
-defaults:
-  run:
-    shell: bash
-
 jobs:
-  # Build job
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: ⬇️ Checkout Repo
-        uses: actions/checkout@v4
+      - name: 🧾 Checkout code
+        uses: actions/checkout@v3
+
       - name: 🟢 Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: 📦 Install Dependencies
+
+      - name: 📦 Install dependencies
         run: npm ci
-      - name: 🔑 Setup Environment Variables
+
+      - name: 🔐 Create .env.production file
         run: |
           echo "GATSBY_EMAILJS_SERVICE_ID=${{ secrets.GATSBY_EMAILJS_SERVICE_ID }}" >> .env.production
           echo "GATSBY_EMAILJS_TEMPLATE_ID=${{ secrets.GATSBY_EMAILJS_TEMPLATE_ID }}" >> .env.production
@@ -50,15 +28,12 @@ jobs:
           echo "GATSBY_RECAPTCHA_SITE_KEY=${{ secrets.GATSBY_RECAPTCHA_SITE_KEY }}" >> .env.production
           echo "CONTENTFUL_SPACE_ID=${{ secrets.CONTENTFUL_SPACE_ID }}" >> .env.production
           echo "CONTENTFUL_ACCESS_TOKEN=${{ secrets.CONTENTFUL_ACCESS_TOKEN }}" >> .env.production
-      - name: 🛠️ Build Gatsby Site
+
+      - name: 🛠️ Build Gatsby site
         run: npm run build
+
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-      
-      
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
