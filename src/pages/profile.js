@@ -126,7 +126,8 @@ const ProfilePage = () => {
 
         <h2 style={{ marginTop: '2rem', fontSize: '2rem', color: '#34495E' }}>🎯 Hobbies & Pursuits</h2>
         <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-          Outside of work, I enjoy exploring my adventurous side. After moving to the United States to pursue my .
+          Outside of work, I enjoy exploring my adventurous side. After moving to the United States to pursue my masters degree, I also picked up Brazilian Jiu-Jitsu. I am currently blue belt under the tutelage of Jason Santiago in 
+          Daniel Gracie Maineline in Paoli, Pennsylvania. Apart from this, I also enjoy hiking and camping in the beautiful state parks of Pennsylvania.
         </p>
         <Carousel responsive={responsive} infinite autoPlay>
           {images.map((img, index) => (

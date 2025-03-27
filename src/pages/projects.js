@@ -13,7 +13,6 @@ const generatePlaceholderImage = async (title) => {
   try {
     console.log("Fetching Unsplash image for:", title);
     const response = await axios.get(`https://api.unsplash.com/photos/random`, {
-      // params: { query: title, orientation: 'landscape', client_id: UNSPLASH_ACCESS_KEY },
       params: { query: title, orientation: 'landscape' },
       headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` },
     });

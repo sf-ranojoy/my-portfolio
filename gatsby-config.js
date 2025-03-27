@@ -15,6 +15,7 @@ require("dotenv").config({
 
 
 module.exports = {
+  pathPrefix: "/my-portfolio",  // GitHub Pages path 
   siteMetadata: {
     title: `My Portfolio`,
     description: `A simple portfolio website.`,
@@ -42,5 +43,4 @@ module.exports = {
   ],
 };
 
-console.log("Loaded Contentful Space ID:", process.env.CONTENTFUL_SPACE_ID);
-console.log("Loaded Contentful Token:", process.env.CONTENTFUL_ACCESS_TOKEN);
+console.log("Loaded process env variables:", process.env);
