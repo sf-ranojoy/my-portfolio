@@ -7,7 +7,6 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import AOS from 'aos'
 import PropTypes from "prop-types"
 import Header from "./header"
 import "./layout.css"
@@ -23,11 +22,7 @@ const Layout = ({ children }) => {
     }
   `)
 
-  React.useEffect(() => {
-    AOS.init({
-      duration: 500,
-    })
-  }, [])
+
 
   return (
     <>

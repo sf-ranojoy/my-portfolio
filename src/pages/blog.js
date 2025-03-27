@@ -24,6 +24,8 @@ const extractTextFromHTML = (html) => {
 
 const BlogPage = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMediumPosts = async () => {
@@ -42,9 +44,12 @@ const BlogPage = () => {
             link: post.link,
             image: extractImageFromHTML(post.description),
           })));
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching Medium posts:', error);
+        setError('Failed to load GitHub projects. Please try again later.');
+        setLoading(false);
       }
     };
 
@@ -55,17 +60,23 @@ const BlogPage = () => {
     <Layout>
       <section style={{ padding: '2rem', textAlign: 'center' }}>
         <h2 style={{ marginBottom: '2rem', fontSize: '2rem', color: '#34495E' }}>My Blog Posts</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
-        {posts.map((project) => (
-          <DataCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            link={project.link}
-            image={project.image}
-          />
-        ))}
-        </div>
+        {loading ? (
+          <p style={{ textAlign: 'center' }}>🔄 Loading projects...</p>
+        ) : error ? (
+          <p style={{ textAlign: 'center', color: 'red' }}>{error}</p>
+        ) : ( 
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}> 
+            {posts.map((project) => (
+              <DataCard
+                key={project.id}
+                title={project.title}
+                description={project.description}
+                link={project.link}
+                image={project.image}
+              />
+            ))}
+          </div>
+          )}
       </section>
     </Layout>
   );

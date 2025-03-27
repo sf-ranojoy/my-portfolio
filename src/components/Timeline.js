@@ -6,13 +6,19 @@ import Typography from '@mui/material/Typography';
 
 const experiences = [
   {
+    title: 'Full-Stack Developer',
+    employer: 'Kiss Applications Inc.',
+    date: 'Nov 2024 - Present',
+    logo: '/logos/kissuxlogo.png'
+  },
+  {
     title: 'Chief Data Architect',
     employer: 'School Frontiers',
-    date: 'Aug 2024 - Present',
+    date: 'Aug 2024 - Feb 2025',
     logo: '/logos/school-frontiers.png'
   },
   {
-    title: 'Graduate Research Assitant',
+    title: 'Graduate Research Assistant',
     employer: 'The Pennsylvania State Univeristy',
     date: 'Jan 2023 - May 2024',
     logo: '/logos/penn-state.png'
@@ -33,9 +39,9 @@ const experiences = [
 
 const HorizontalTimeline = () => {
   return (
-    <section className="horizontal-timeline" style={{ padding: '2rem 0' }}>
+    <section className="horizontal-timeline" style={{ padding: '1rem 0' }}>
       <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Professional Experience</h2>
-      <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'nowrap', overflowX: 'auto', padding: '0 1rem' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap', padding: '0.5rem' }}>
         {experiences.map((exp, index) => (
           <Card key={index} style={{ minWidth: '300px', maxWidth: '300px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
             <CardContent>
