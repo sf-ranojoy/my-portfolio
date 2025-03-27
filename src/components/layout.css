@@ -208,6 +208,7 @@ code {
   padding-top: 0.25em;
   word-break: normal;
 }
+
 pre code {
   background: none;
 }
