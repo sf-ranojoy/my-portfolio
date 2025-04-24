@@ -25,11 +25,19 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-styled-components`, // If using styled-components
+      options: {
+        displayName: true,
+        pure: true,
       },
     },
     {
@@ -43,4 +51,3 @@ module.exports = {
   ],
 };
 
-console.log("Loaded process env variables:", process.env);
